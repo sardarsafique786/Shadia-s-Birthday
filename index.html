@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shadia 💜 Birthday & Valentine Countdown</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --lavender: #c8b6ff;
+      --lavender-dark: #9f86ff;
+      --lavender-light: #f6f4ff;
+      --text-dark: #2f2b4f;
+      --glass: rgba(255,255,255,0.88);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--lavender-light), var(--lavender));
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ---------------- FLOATING BACKGROUND ---------------- */
+    #floating-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-item {
+      position: absolute;
+      bottom: -60px;
+      font-family: 'Playfair Display', serif;
+      color: rgba(255,255,255,0.45);
+      animation: floatUp linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(-130vh) translateX(var(--drift)); }
+    }
+
+    /* ---------------- HERO ---------------- */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      border-radius: 30px;
+      padding: 50px;
+      max-width: 1100px;
+      width: 100%;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+    }
+
+    h1 span { color: var(--lavender-dark); }
+
+    .subtitle {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      margin-bottom: 35px;
+      line-height: 1.7;
+    }
+
+    .timer {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      background: white;
+      padding: 24px 20px;
+      border-radius: 22px;
+      min-width: 110px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .time-box h2 {
+      font-size: 2.3rem;
+      font-weight: 600;
+    }
+
+    .time-box span {
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      opacity: 0.6;
+      text-transform: uppercase;
+    }
+
+    .love-lines {
+      margin-top: 25px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      max-width: 460px;
+      line-height: 1.7;
+    }
+
+    /* ---------------- CALENDAR ---------------- */
+    .calendar {
+      background: white;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 25px 55px rgba(0,0,0,0.15);
+    }
+
+    .calendar-header {
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--lavender-dark);
+      margin-bottom: 20px;
+    }
+
+    .weekdays, .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+    }
+
+    .weekdays div {
+      font-size: 0.7rem;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    .days div {
+      padding: 12px 0;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+
+    .highlight {
+      background: var(--lavender-dark);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      box-shadow: 0 12px 30px rgba(159,134,255,0.7);
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+    section {
+      padding: 90px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      margin-bottom: 25px;
+    }
+
+    .moments p {
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.85;
+      margin-bottom: 12px;
+    }
+
+    /* ---------------- PHOTO SECTION ---------------- */
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .photo-card {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+      background: white;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---------------- MODAL & BIRTHDAY ---------------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 45px;
+      border-radius: 24px;
+      max-width: 460px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+
+    /*-------------------- Cards ----------------------*/
+
+    section p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.85;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      padding: 35px 30px;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      line-height: 1.7;
+    }
+
+    .birthday {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, var(--lavender), var(--lavender-dark));
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      z-index: 20;
+      flex-direction: column;
+      padding: 30px;
+    }
+
+    .birthday h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.4rem;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse { 50% { transform: scale(1.08); } }
+    @keyframes float { 50% { transform: translateY(-10px); } }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="floating-layer"></div>
+
+<header>
+  <div class="hero">
+    <div>
+      <h1>Counting down to <span>Shadia’s Birthday</span></h1>
+      <p class="subtitle">A birthday countdown wrapped in a little Valentine magic — because both belong to you.</p>
+
+      <div class="timer">
+        <div class="time-box"><h2 id="days">00</h2><span>Days</span></div>
+        <div class="time-box"><h2 id="hours">00</h2><span>Hours</span></div>
+        <div class="time-box"><h2 id="minutes">00</h2><span>Minutes</span></div>
+        <div class="time-box"><h2 id="seconds">00</h2><span>Seconds</span></div>
+      </div>
+
+      <div class="love-lines">
+        <p>February 14 is known for love.</p>
+        <p>For me, it’s also the day my favorite person was born.</p>
+      </div>
+    </div>
+
+    <div class="calendar">
+      <div class="calendar-header">February</div>
+      <div class="weekdays">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+      <div class="days">
+        <div></div><div></div><div></div><div></div><div>1</div><div>2</div><div>3</div>
+        <div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+        <div>11</div><div>12</div><div>13</div><div class="highlight" id="day14">14</div><div>15</div><div>16</div><div>17</div>
+        <div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div>
+        <div>25</div><div>26</div><div>27</div><div>28</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Little Moments</h2>
+  <div class="moments">
+    <p>• The way you make ordinary days feel special</p>
+    <p>• How your smile changes the mood without trying</p>
+    <p>• The calm you bring just by being yourself</p>
+    <p>• The warmth you leave behind, even from far away</p>
+  </div>
+</section>
+
+<section>
+  <h2>Smeile Please</h2>
+  <div class="photos">
+    <div class="photo-card"><img src="photos/IMG-1.jpg" alt=""></div>
+    <div class="photo-card"><img src="photos/IMG-2.jpg" alt=""></div>
+    <div class="photo-card"><img src="photos/IMG-3.jpg" alt=""></div>
+    <!-- add up to 5 photos -->
+  </div>
+</section>
+
+<section>
+  <h2>Why This Day Is Special</h2>
+  <p>Some days are celebrated by the world. This one is celebrated by my heart — because it marks the day you arrived and quietly made everything better.</p>
+
+  <div class="cards">
+    <div class="card"><h3>Her Birthday 🎂</h3><p>The day that deserves to be remembered every year — not just for the date, but for the person it gave the world.</p></div>
+    <div class="card"><h3>Valentine’s Day 💝</h3><p>A day about love, made more meaningful because it happens to be yours.</p></div>
+    <div class="card"><h3>Us 💜</h3><p>Not a holiday. Not an event. Just something real, growing quietly, day by day.</p></div>
+  </div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">The day love is celebrated everywhere — and you’re the reason I believe in it.</div>
+</div>
+
+<div class="birthday" id="birthday">
+  <h2>Happy Birthday, Shadia 💜</h2>
+</div>
+
+<script>
+  /* -------- COUNTDOWN -------- */
+  const targetDate = new Date('February 14, 2026 00:00:00').getTime();
+  const birthdayScreen = document.getElementById('birthday');
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      birthdayScreen.style.display = 'flex';
+      return;
+    }
+
+    days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hours.innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    minutes.innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    seconds.innerText = Math.floor((diff % (1000 * 60)) / 1000);
+  }, 1000);
+
+  day14.onclick = () => modal.style.display = 'flex';
+  modal.onclick = () => modal.style.display = 'none';
+
+  /* -------- FLOATING SYMBOL ENGINE -------- */
+  const symbols = ['💜','🌸','✨','I','L','O','V','E','Y','O','U'];
+  const layer = document.getElementById('floating-layer');
+
+  function createFloatingItem() {
+    const el = document.createElement('div');
+    el.className = 'floating-item';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (Math.random() * 18 + 14) + 'px';
+    el.style.filter = `blur(${Math.random() * 3 + 1}px)`;
+    el.style.animationDuration = (Math.random() * 20 + 18) + 's';
+    el.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+
+    layer.appendChild(el);
+    setTimeout(() => el.remove(), 40000);
+  }
+
+  setInterval(createFloatingItem, 900);
+</script>
+
+</body>
+</html>
