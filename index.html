@@ -364,6 +364,54 @@
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
     }
+
+
+    /* ================= DAILY UNLOCK NOTES ================= */
+
+.feb-note{
+  background: linear-gradient(135deg,
+    rgba(200,182,255,0.35),
+    rgba(255,255,255,0.95)
+  );
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 28px 24px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+  text-align: left;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* LOCKED STATE */
+.feb-note.locked{
+  opacity: 0.45;
+  filter: blur(2px);
+  position: relative;
+  display: none;
+}
+
+.feb-note.locked::after{
+  content: "🔒 Locked";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 0.75rem;
+  color: var(--lavender-dark);
+}
+
+/* UNLOCKED STATE */
+.feb-note.unlocked{
+  opacity: 1;
+  filter: none;
+}
+
+/* Highlight Feb 13 */
+.highlight-note{
+  background: linear-gradient(
+    135deg,
+    rgba(200,182,255,0.35),
+    rgba(255,255,255,0.95)
+  );
+}
     /* ================= FINAL LOVE NOTE ================= */
 
 .love-you-section{
@@ -444,7 +492,7 @@
 <header>
   <div class="hero">
     <div>
-      <h1>Counting down to <span>Dr. Shadia’s Day</span></h1>
+      <h1>Counting down to <span> Dr. Shadia’s Day</span></h1>
       <p class="subtitle">A birthday countdown wrapped in a little Valentine magic — because both belong to you.</p>
 
       <div class="timer">
@@ -514,8 +562,130 @@
 
   </div>
 </section>
+<section>
+<h2 id="countdownHeading">13 days left…</h2>
+<p class="feb-notes-subtitle">
+  Until the day the world celebrates you 💜
+</p>
+</section>
+<section class="cards">
+<div class="feb-note" data-day="1">
+  <span class="note-date">Feb 1 💜</span>
+  <p>
+    February feels softer knowing you’re in my life.<br>
+    Just the thought of you brings a calm smile.<br>
+    This month already feels special because of you.
+  </p>
+</div>
 
+<div class="feb-note" data-day="2">
+  <span class="note-date">Feb 2 💜</span>
+  <p>
+    You don’t even try, yet you make my heart feel safe.<br>
+    Your presence is comforting, like a warm hug.<br>
+    I cherish that more than you know.
+  </p>
+</div>
 
+<div class="feb-note" data-day="3">
+  <span class="note-date">Feb 3 💜</span>
+  <p>
+    Loving you feels natural, never forced.<br>
+    You slowly became my favorite thought.<br>
+    And now, you stay there effortlessly.
+  </p>
+</div>
+
+<div class="feb-note" data-day="4">
+  <span class="note-date">Feb 4 💜</span>
+  <p>
+    Some people make life brighter just by existing.<br>
+    You are that person for me.<br>
+    Quietly, beautifully, always.
+  </p>
+</div>
+
+<div class="feb-note" data-day="5">
+  <span class="note-date">Feb 5 💜</span>
+  <p>
+    Even miles apart, you feel close to my heart.<br>
+    Distance hasn’t changed what I feel.<br>
+    If anything, it made it deeper.
+  </p>
+</div>
+
+<div class="feb-note" data-day="6">
+  <span class="note-date">Feb 6 💜</span>
+  <p>
+    You make ordinary days feel meaningful.<br>
+    Just knowing you’re there gives me strength.<br>
+    That’s the magic of you.
+  </p>
+</div>
+
+<div class="feb-note" data-day="7">
+  <span class="note-date">Feb 7 💜</span>
+  <p>
+    I smile more because of you.<br>
+    Laugh a little easier because of you.<br>
+    Love a little deeper because of you.
+  </p>
+</div>
+
+<div class="feb-note" data-day="8">
+  <span class="note-date">Feb 8 💜</span>
+  <p>
+    You are gentle in ways words can’t explain.<br>
+    Loving you feels peaceful, not heavy.<br>
+    And that’s something I treasure deeply.
+  </p>
+</div>
+
+<div class="feb-note" data-day="9">
+  <span class="note-date">Feb 9 💜</span>
+  <p>
+    When life feels overwhelming,<br>
+    thinking of you brings me back to calm.<br>
+    You’re my quiet comfort.
+  </p>
+</div>
+
+<div class="feb-note" data-day="10">
+  <span class="note-date">Feb 10 💜</span>
+  <p>
+    You’ve become part of my everyday thoughts.<br>
+    Not as a habit, but as a choice.<br>
+    One I happily make every day.
+  </p>
+</div>
+
+<div class="feb-note" data-day="11">
+  <span class="note-date">Feb 11 💜</span>
+  <p>
+    I admire the way you are.<br>
+    Your heart, your smile, your warmth.<br>
+    Everything about you feels special to me.
+  </p>
+</div>
+
+<div class="feb-note" data-day="12">
+  <span class="note-date">Feb 12 💜</span>
+  <p>
+    Loving you feels steady and real.<br>
+    No rush, no pressure, just honesty.<br>
+    And that makes it even more beautiful.
+  </p>
+</div>
+
+<div class="feb-note highlight-note" data-day="13">
+  <span class="note-date">Feb 13 💜</span>
+  <p>
+    Tomorrow is a celebration of you.<br>
+    Of your existence, your heart, your love.<br>
+    And I’m grateful I get to love you.
+  </p>
+</div>
+</section>
 <section>
   <h2>Little Moments</h2>
   <div class="moments">
@@ -529,9 +699,9 @@
 <section>
   <h2>Smile Please</h2>
   <div class="photos">
-    <div class="photo-card"><img src="IMG-1.jpg" alt=""></div>
-    <div class="photo-card"><img src="IMG-4.jpg" alt=""></div>
-    <div class="photo-card"><img src="IMG-3.jpg" alt=""></div>
+    <div class="photo-card"><img src="photos/IMG-1.jpg" alt=""></div>
+    <div class="photo-card"><img src="photos/IMG-4.jpg" alt=""></div>
+    <div class="photo-card"><img src="photos/IMG-3.jpg" alt=""></div>
     <!-- add up to 5 photos -->
   </div>
 </section>
@@ -615,6 +785,39 @@
   }
 
   setInterval(createFloatingItem, 900);
+  /*----------------------day counts-------------------------*/
+  const today = new Date();
+  const month = today.getMonth(); // Feb = 1
+  const day = today.getDate();
+
+  const heading = document.getElementById("countdownHeading");
+
+  // ---------------- COUNTDOWN HEADING ----------------
+  if (month === 1 && day <= 14) {
+    const daysLeft = 14 - day;
+    heading.textContent =
+      daysLeft === 0
+        ? "It’s finally your day 💜"
+        : `${daysLeft} day${daysLeft > 1 ? "s" : ""} left…`;
+  } else {
+    heading.textContent = "Counting moments with you 💜";
+  }
+
+  // ---------------- NOTES UNLOCK LOGIC ----------------
+  document.querySelectorAll(".feb-note").forEach(note => {
+    const noteDay = parseInt(note.dataset.day, 10);
+
+    // Lock everything by default
+    note.classList.remove("unlocked");
+    note.classList.add("locked");
+
+    // Unlock only past & today (Feb 1–14)
+    if (month === 1 && day >= noteDay && day <= 14) {
+      note.classList.remove("locked");
+      note.classList.add("unlocked");
+    }
+  });
+
 </script>
 
 </body>
